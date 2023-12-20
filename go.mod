@@ -1,4 +1,4 @@
-module github.com/mbpnetwork/replace-response
+module github.com/caddyserver/replace-response
 
 go 1.18
 
@@ -113,3 +113,5 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	howett.net/plist v1.0.0 // indirect
 )
+
+replace github.com/caddyserver/replace-response => github.com/mbpnetwork/replace-response latest
