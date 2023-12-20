@@ -96,7 +96,9 @@ func (h *Handler) Provision(ctx caddy.Context) error {
 					tr.MaxMatchSize = 2048
 					transforms[i] = tr
 				} else {
-					transforms[i] = replace.String(repl.Search, repl.Replace)
+					placeholderRepl := ctx.Value(caddy.ReplacerCtxKey).(*caddy.Replacer)
+					replaced := placeholderRepl.ReplaceAll(repl.Replace, "")
+					transforms[i] = replace.String(repl.Search, replaced)
 				}
 			}
 			return transform.Chain(transforms...)
