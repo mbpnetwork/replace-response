@@ -97,8 +97,7 @@ func (h *Handler) Provision(ctx caddy.Context) error {
 					transforms[i] = tr
 				} else {
 					placeholderRepl := ctx.Value(caddy.ReplacerCtxKey).(*caddy.Replacer)
-					replaced := placeholderRepl.ReplaceAll(repl.Replace, "")
-					transforms[i] = replace.String(repl.Search, replaced)
+					transforms[i] = replace.String(repl.Search, placeholderRepl.ReplaceAll(repl.Replace, ""))
 				}
 			}
 			return transform.Chain(transforms...)
